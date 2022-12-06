@@ -1,67 +1,67 @@
 {
-	"id": "hsiao.app.sub",
-	"name": "hsiao应用订阅",
-	"author": "@hsiao",
-	"icon": "https://avatars.githubusercontent.com/u/14857002",
-	"repo": "https://github.com/seirhsiao/config",
-	"apps": [
-		{
-			"id": "testflight",
-			"name": "testflight信息获取",
-			"keys": [
-				"account_token",
-				"session_id",
-				"session_digest",
-				"request_id"
-			],
-			"settings": [
-				{
-					"id": "account_token",
-					"name": "url请求中账号Token",
-					"val": "",
-					"type": "text",
-					"placeholder": "15be32dd-c3fe-4720-8342-a90920853b36",
-					"autoGrow": true,
-					"rows": 1,
-					"desc": "打开testflight app自动获取，可手动输入"
-				},
-				{
-					"id": "session_id",
-					"name": "请求header中X-Session-Id值",
-					"val": "",
-					"type": "text",
-					"placeholder": "OSrDBIQt+lVMmpyT3i5rhPdB9OwdQ==",
-					"autoGrow": true,
-					"rows": 1,
-					"desc": "打开testflight app自动获取，可手动输入"
-				},
-				{
-					"id": "session_digest",
-					"name": "请求header中X-Session-Digest值",
-					"val": "",
-					"type": "text",
-					"placeholder": "0afb7b5ba2261912e8d1ad7fca21167cc99e5c8d",
-					"autoGrow": true,
-					"rows": 1,
-					"desc": "打开testflight app自动获取，可手动输入"
-				},
-				{
-					"id": "request_id",
-					"name": "请求header中X-Request-Id值",
-					"val": "",
-					"type": "text",
-					"placeholder": "62056EE3-9C9F-4EBF-AFDB-6EF693C64FD4",
-					"autoGrow": true,
-					"rows": 1,
-					"desc": "打开testflight app自动获取，可手动输入"
-				}
-			],
-			"author": "@hsiao",
-			"repo": "https://github.com/seirhsiao/config/script/blob/master/testflight.js",
-			"icons": [
-				"https://raw.githubusercontent.com/Orz-3/mini/master/testflight.png",
-				"https://raw.githubusercontent.com/Orz-3/task/master/testflight.png"
-			]
-		}
-	]
+    "id": "hsiao.app.sub",
+    "name": "hsiao应用订阅",
+    "author": "@hsiao",
+    "icon": "https://avatars.githubusercontent.com/u/14857002",
+    "repo": "https://github.com/seirhsiao/config",
+    "apps": [
+        {
+            "id": "tf_info",
+            "name": "testflight信息获取",
+            "keys": [
+                "account_token",
+                "session_id",
+                "session_digest",
+                "request_id"
+            ],
+            "settings": [
+                {
+                    "id": "account_token",
+                    "name": "url请求中账号Token",
+                    "val": "",
+                    "type": "text",
+                    "placeholder": "15be32dd-c3fe-4720-8342-a90920853b36",
+                    "autoGrow": true,
+                    "rows": 1,
+                    "desc": "打开testflight app自动获取，可手动输入"
+                },
+                {
+                    "id": "session_id",
+                    "name": "请求header中X-Session-Id值",
+                    "val": "",
+                    "type": "text",
+                    "placeholder": "OSrDBIQt+lVMmpyT3i5rhPdB9OwdQ==",
+                    "autoGrow": true,
+                    "rows": 1,
+                    "desc": "打开testflight app自动获取，可手动输入"
+                },
+                {
+                    "id": "session_digest",
+                    "name": "请求header中X-Session-Digest值",
+                    "val": "",
+                    "type": "text",
+                    "placeholder": "0afb7b5ba2261912e8d1ad7fca21167cc99e5c8d",
+                    "autoGrow": true,
+                    "rows": 1,
+                    "desc": "打开testflight app自动获取，可手动输入"
+                },
+                {
+                    "id": "request_id",
+                    "name": "请求header中X-Request-Id值",
+                    "val": "",
+                    "type": "text",
+                    "placeholder": "62056EE3-9C9F-4EBF-AFDB-6EF693C64FD4",
+                    "autoGrow": true,
+                    "rows": 1,
+                    "desc": "打开testflight app自动获取，可手动输入"
+                }
+            ],
+            "author": "@hsiao",
+            "repo": "https://github.com/seirhsiao/config/script/blob/master/tf_info.js",
+            "icons": [
+                "https://raw.githubusercontent.com/Orz-3/mini/master/testflight.png",
+                "https://raw.githubusercontent.com/Orz-3/task/master/testflight.png"
+            ]
+        }
+    ]
 }
