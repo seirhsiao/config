@@ -57,7 +57,7 @@
                 }
             ],
             "author": "@hsiao",
-            "repo": "https://github.com/seirhsiao/config/script/blob/master/tf_info.js",
+            "repo": "https://github.com/seirhsiao/config/scripts/blob/master/tf_info.js",
             "icons": [
                 "https://raw.githubusercontent.com/Orz-3/mini/master/testflight.png",
                 "https://raw.githubusercontent.com/Orz-3/task/master/testflight.png"

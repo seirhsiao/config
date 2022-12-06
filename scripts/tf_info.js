@@ -58,7 +58,6 @@ $.boxjs_request_id = $.getdata('request_id');
         $.msg(`${$.name} 获取失败，未找到 x-request-id!`);
       }
   }
-
 })()
 .catch((e) => $.logErr(e))
 .finally(() => $.done());
