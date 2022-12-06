@@ -1,7 +1,9 @@
 /**
  *
- * 脚本作者：DecoAri
- * 引用地址：https://github.com/DecoAri/JavaScript/blob/main/Surge/Auto_join_TF.js
+ * 自动加入Test Flight
+ * Sugre：https://github.com/DecoAri/JavaScript/blob/main/Surge/Auto_join_TF.js
+ * Loon:  https://github.com/mw418/Loon/blob/main/script/Auto_join_TF.js
+ * Quanx：https://githu.com/chouchoui/QuanX/blob/master/Scripts/testflight/Auto_join_TF.js
  * 注意:
  * surge 用户请使用原作者的本版，下列针对shadowrocket无法手动填入persistentStore，而改而使用argument
  * APP_ID 通过argument传进来，多个以逗号','分隔
@@ -9,18 +11,25 @@
 
 !(async () => {
     // ids = $persistentStore.read('APP_ID')
-    ids = $argument
+    ids = $argument || $persistentStore.read('APP_ID')
     if (ids == '') {
-        $notification.post('所有TF已加入完毕', '模块已自动关闭', '')
-        $done(
-            $httpAPI('POST', '/v1/modules', {
-                'Auto module for JavaScripts': 'false'
-            })
-        )
+        // $notification.post('所有TF已加入完毕', '模块已自动关闭', '')
+        $notification.post('所有TF已加入完毕', '请手动禁用该模块', '')
+        $done()
+        // $done(
+        //     $httpAPI('POST', '/v1/modules', {
+        //         'Auto module for JavaScripts': 'false'
+        //     })
+        // )
     } else {
         ids = ids.split(',')
-        for await (const ID of ids) {
-            await autoPost(ID)
+        try {
+            for await (const ID of ids) {
+                await autoPost(ID)
+            }
+        } catch (error) {
+            console.log(error)
+            $done()
         }
     }
     $done()
@@ -32,7 +41,8 @@ function autoPost(ID) {
     let header = {
         'X-Session-Id': `${$persistentStore.read('session_id')}`,
         'X-Session-Digest': `${$persistentStore.read('session_digest')}`,
-        'X-Request-Id': `${$persistentStore.read('request_id')}`
+        'X-Request-Id': `${$persistentStore.read('request_id')}`,
+        'User-Agent': `${$persistentStore.read('tf_ua')}`
     }
     return new Promise(function (resolve) {
         $httpClient.get(
