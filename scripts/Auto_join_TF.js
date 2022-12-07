@@ -10,9 +10,13 @@
  */
 
 !(async () => {
-    // ids = $argument || $persistentStore.read('APP_ID')
+    //ids = $argument || $persistentStore.read('APP_ID')
     ids = $persistentStore.read('APP_ID')
-    ids = ids ? ids + ',' + $argument : $argument
+    // console.log('last join ids: ' + ids)
+    if ($argument) {
+       ids = ids ? $argument + ',' + ids : $argument
+    }
+    // console.log('after merge join ids: ' + ids)
     if (ids == '') {
         // $notification.post('所有TF已加入完毕', '模块已自动关闭', '')
         $notification.post('所有TF已加入完毕', '请手动禁用该模块', '')
@@ -28,6 +32,7 @@
         arr = unique(arr).filter((a) => a && a.trim())
         if (arr.length > 0) {
             ids = arr.join(',')
+            $persistentStore.write(ids.toString(), 'APP_ID')
         }
         try {
             for await (const ID of ids) {

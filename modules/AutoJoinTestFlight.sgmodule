@@ -6,7 +6,7 @@
 #⚠️：模块下载后请务必将“自动加入TF”中的argument=LPQmtkUs,Hgun65jg,8yhJgv替换为自己需要join的app_id
 #⚠️使用方法：
 # 1. 开启http解密，确保配置开启了http解密
-# 2. 获取自己的testflight账号等信息（必须） - 即下"面第一个脚本“TF信息获取”（默认已开启，enable=true）
+# 2. 获取自己的testflight账号等信息（必须） - 即下面第一个脚本“TF信息获取”（默认已开启，enable=true）
 # 步骤：打开testflight app获取信息（app 只需打开一次，出现“请关闭本脚本，信息获取成功”后可划掉testflight），然后关闭该脚本（即设置enable=false）
 # 或者将“TF信息获取”脚本和MITM移入新的本地模块中（建好本地模块后，勾选，打开testflight app获取信息（app 只需打开一次，出现“请关闭本脚本，信息获取成功”后可划掉testflight），然后关闭该脚本即取消勾选模块）
 # 3. 添加需要加入的APP_ID并监控 （必须）- 在“自动加入TF”（第三个脚本）中'argument'添加需要加入的test flight app id，比如tf链接 https://testflight.apple.com/join/LPQmtkUs 的join后的字符串（也就是此例子的“LPQmtkUs”）
