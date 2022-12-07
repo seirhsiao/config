@@ -1,19 +1,23 @@
 #!name=自动加入TestFlight
 #!desc=ShadowRocket版自动加入Test Flight
-# Loan: https://github.com/mw418/Loon/blob/main/plugin/Auto_join_TF.plugin
+# Sugre: https://github.com/DecoAri/Module/blob/main/Surge/Auto_join_TF.sgmodule
+# Loan:  https://github.com/mw418/Loon/blob/main/plugin/Auto_join_TF.plugin
 # Quanx: https://github.com/chouchoui/QuanX/blob/master/Scripts/testflight/testflight.key.snippet
+#⚠️：模块下载后请务必将“自动加入TF”中的argument=LPQmtkUs,Hgun65jg,8yhJgv替换为自己需要join的app_id
 #⚠️使用方法：
-# 1. 开启http解密
-# 2. 打开“TF信息获取”即下面第一个脚本（设置enable=true或“TF信息获取”单独放一个module，勾选）后，打开testflight app获取信息（app 只需打开一次），然后关闭该脚本（即设置enable=false）
-# 3. 在“自动加入TF”（第三个脚本）'argument'添加需要加入的test flight app id，比如tf链接 https://testflight.apple.com/join/LPQmtkUs 的join后的字符串（也就是此例子的“LPQmtkUs”）
-# 4. APP_ID获取（第二个脚本） - 支持通过访问`https://testflight.apple.com/join/xxx`手动追加APP_ID(xxx)
+# 1. 开启http解密，确保配置开启了http解密
+# 2. 获取自己的testflight账号等信息（必须） - 即下"面第一个脚本“TF信息获取”（默认已开启，enable=true）
+# 步骤：打开testflight app获取信息（app 只需打开一次，出现“请关闭本脚本，信息获取成功”后可划掉testflight），然后关闭该脚本（即设置enable=false）
+# 或者将“TF信息获取”脚本和MITM移入新的本地模块中（建好本地模块后，勾选，打开testflight app获取信息（app 只需打开一次，出现“请关闭本脚本，信息获取成功”后可划掉testflight），然后关闭该脚本即取消勾选模块）
+# 3. 添加需要加入的APP_ID并监控 （必须）- 在“自动加入TF”（第三个脚本）中'argument'添加需要加入的test flight app id，比如tf链接 https://testflight.apple.com/join/LPQmtkUs 的join后的字符串（也就是此例子的“LPQmtkUs”）
 #⚠️：支持无限个TF链接，每个链接需要用英文逗号“,”隔开（如： argument=LPQmtkUs,Hgun65jg,8yhJgv）
+# 4. APP_ID获取或追加（可选） - 第二个脚本支持通过访问`https://testflight.apple.com/join/xxx`方式添加/追加xxx到需要加入的APP_ID列表中
 [Script]
-TF信息获取 = type=http-request, pattern=^https:\/\/testflight\.apple\.com\/v3\/accounts/.*\/apps$, requires-body=0, timeout=180, script-path=https://raw.githubusercontent.com/seirhsiao/config/main/scripts/TF_keys.js, enable=true
+TF信息获取 = type=http-request, pattern=^https:\/\/testflight\.apple\.com\/v3\/accounts/.*\/apps$, requires-body=0, timeout=180, , script-update-interval=86400, script-path=https://raw.githubusercontent.com/seirhsiao/config/main/scripts/TF_keys.js, enable=true
 
-APP_ID获取 = http-request, pattern=^https://testflight.apple.com/join/(.*), requires-body=0, timeout=180, script-path=https://raw.githubusercontent.com/seirhsiao/config/main/scripts/TF_keys.js, enable=true
+APP_ID填加 = http-request, pattern=^https://testflight.apple.com/join/(.*), requires-body=0, timeout=180, script-path=https://raw.githubusercontent.com/seirhsiao/config/main/scripts/TF_keys.js, enable=true
 
-自动加入TF = type=cron, cronexp=*/1 * * * * *, requires-body=0, timeout=60, script-update-interval=0, enable=true, script-path=https://raw.githubusercontent.com/seirhsiao/config/main/scripts/Auto_join_TF.js, argument=LPQmtkUs,Hgun65jg,8yhJgv
+自动加入TF = type=cron, cronexp=*/1 * * * *, requires-body=0, timeout=300, script-update-interval=86400, enable=true, script-path=https://raw.githubusercontent.com/seirhsiao/config/main/scripts/Auto_join_TF.js, argument=LPQmtkUs,Hgun65jg,8yhJgv
 
 [MITM]
 hostname = %APPEND% testflight.apple.com

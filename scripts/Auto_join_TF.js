@@ -1,17 +1,18 @@
 /**
  *
- * 自动加入Test Flight
+ * 自动加入Test Flight, 改自下列
  * Sugre：https://github.com/DecoAri/JavaScript/blob/main/Surge/Auto_join_TF.js
  * Loon:  https://github.com/mw418/Loon/blob/main/script/Auto_join_TF.js
  * Quanx：https://githu.com/chouchoui/QuanX/blob/master/Scripts/testflight/Auto_join_TF.js
  * 注意:
- * surge 用户请使用原作者的本版，下列针对shadowrocket无法手动填入persistentStore，而改而使用argument
+ * surge 用户请使用原作者的本版，下列针对shadowrocket无法手动填入persistentStore，而改而使用argument替代
  * APP_ID 通过argument传进来，多个以逗号','分隔
  */
 
 !(async () => {
-    // ids = $persistentStore.read('APP_ID')
-    ids = $argument || $persistentStore.read('APP_ID')
+    // ids = $argument || $persistentStore.read('APP_ID')
+    ids = $persistentStore.read('APP_ID')
+    ids = ids ? ids + ',' + $argument : $argument
     if (ids == '') {
         // $notification.post('所有TF已加入完毕', '模块已自动关闭', '')
         $notification.post('所有TF已加入完毕', '请手动禁用该模块', '')
@@ -22,7 +23,12 @@
         //     })
         // )
     } else {
-        ids = ids.split(',')
+        // 去除重复的app id
+        let arr = ids.split(',')
+        arr = unique(arr).filter((a) => a && a.trim())
+        if (arr.length > 0) {
+            ids = arr.join(',')
+        }
         try {
             for await (const ID of ids) {
                 await autoPost(ID)
@@ -34,7 +40,9 @@
     }
     $done()
 })()
-
+function unique(arr) {
+    return Array.from(new Set(arr))
+}
 function autoPost(ID) {
     let Key = $persistentStore.read('key')
     let testurl = 'https://testflight.apple.com/v3/accounts/' + Key + '/ru/'
@@ -58,6 +66,14 @@ function autoPost(ID) {
                             ID,
                             '不存在该TF',
                             '已自动删除该APP_ID'
+                        )
+                        resolve()
+                    } else if (resp.status == 401) {
+                        console.log('TF获取信息失败，请从新获取！')
+                        $notification.post(
+                            '授权已失效',
+                            '请从新使用',
+                            'TF获取信息获取'
                         )
                         resolve()
                     } else {
