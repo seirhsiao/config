@@ -14,7 +14,7 @@
     ids = $persistentStore.read('APP_ID')
     // console.log('last join ids: ' + ids)
     if ($argument) {
-       ids = ids ? $argument + ',' + ids : $argument
+        ids = ids ? $argument + ',' + ids : $argument
     }
     // console.log('after merge join ids: ' + ids)
     if (ids == '') {
@@ -29,14 +29,10 @@
     } else {
         // 去除重复的app id
         let arr = ids.split(',')
-        arr = unique(arr).filter((a) => a && a.trim())
-        if (arr.length > 0) {
-            ids = arr.join(',')
-            $persistentStore.write(ids.toString(), 'APP_ID')
-        }
+        ids = unique(arr).filter((a) => a)
         try {
-            for await (const ID of ids) {
-                await autoPost(ID)
+            for await (const id of ids) {
+                await autoPost(id)
             }
         } catch (error) {
             console.log(error)
@@ -45,6 +41,7 @@
     }
     $done()
 })()
+
 function unique(arr) {
     return Array.from(new Set(arr))
 }
@@ -104,7 +101,7 @@ function autoPost(ID) {
                                     )
                                     console.log(
                                         jsonBody.data.name +
-                                            ' TestFlight加入成功'
+                                            'TestFlight加入成功'
                                     )
                                     ids = $persistentStore
                                         .read('APP_ID')
