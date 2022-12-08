@@ -3,7 +3,8 @@
  * 自动加入Test Flight, 改自下列
  * Sugre：https://github.com/DecoAri/JavaScript/blob/main/Surge/Auto_join_TF.js
  * Loon:  https://github.com/mw418/Loon/blob/main/script/Auto_join_TF.js
- * Quanx：https://githu.com/chouchoui/QuanX/blob/master/Scripts/testflight/Auto_join_TF.js
+ *        https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/TestFlight/Auto_join_TF.js
+ * Quanx：https://github.com/chouchoui/QuanX/blob/master/Scripts/testflight/Auto_join_TF.js
  * 注意:
  * surge 用户请使用原作者的本版，下列针对shadowrocket无法手动填入persistentStore，而改而使用argument替代
  * APP_ID 通过argument传进来，多个以逗号','分隔
@@ -46,8 +47,8 @@ function unique(arr) {
     return Array.from(new Set(arr))
 }
 function autoPost(ID) {
-    let Key = $persistentStore.read('key')
-    let testurl = 'https://testflight.apple.com/v3/accounts/' + Key + '/ru/'
+    let account_id = $persistentStore.read('account_id')
+    let testurl = 'https://testflight.apple.com/v3/accounts/' + account_id + '/ru/'
     let header = {
         'X-Session-Id': `${$persistentStore.read('session_id')}`,
         'X-Session-Digest': `${$persistentStore.read('session_digest')}`,

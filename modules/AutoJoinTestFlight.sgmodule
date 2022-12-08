@@ -1,7 +1,8 @@
 #!name=自动加入TestFlight
-#!desc=ShadowRocket版自动加入Test Flight
+#!desc=ShadowRocket版自动加入Test Flight，自动监控TF名额，一旦有新的名额即刻加入。
 # Sugre: https://github.com/DecoAri/Module/blob/main/Surge/Auto_join_TF.sgmodule
 # Loan:  https://github.com/mw418/Loon/blob/main/plugin/Auto_join_TF.plugin
+# https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Tool/Loon/Plugin/Auto_Join_TF.plugin
 # Quanx: https://github.com/chouchoui/QuanX/blob/master/Scripts/testflight/testflight.key.snippet
 #⚠️：模块下载后请务必将“自动加入TF”中的argument=LPQmtkUs,Hgun65jg,8yhJgv替换为自己需要join的app_id
 #⚠️使用方法：
@@ -17,6 +18,7 @@
 #⚠️：支持无限个TF链接，每个链接需要用英文逗号“,”隔开（如： argument=LPQmtkUs,Hgun65jg,8yhJgv）
 #
 # 4. APP_ID获取或追加（可选） - 第二个脚本支持通过访问`https://testflight.apple.com/join/xxx`方式添加/追加xxx到需要加入的APP_ID列表中
+# 5. 更新 boxjs 添加或修改APP_ID （可选） - https://github.com/seirhsiao/config/blob/main/scripts/hsiao.boxjs.json
 [Script]
 TF信息获取 = type=http-request, pattern=^https:\/\/testflight\.apple\.com\/v3\/accounts/.*\/apps$, requires-body=0, timeout=180, script-update-interval=86400, script-path=https://raw.githubusercontent.com/seirhsiao/config/main/scripts/TF_keys.js, enable=true
 

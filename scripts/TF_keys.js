@@ -2,6 +2,7 @@
  * 获取Test Flight信息或添加 Test Flight APP_ID
  * Surge：https://github.com/DecoAri/JavaScript/blob/main/Surge/TF_keys.js
  * Loan:  https://github.com/mw418/Loon/blob/main/script/TF_keys.js
+ *        https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/TestFlight/TF_keys.js
  * Quanx: https://github.com/chouchoui/QuanX/blob/master/Scripts/testflight/TF_keys.js
  */
 const reg1 = /^https:\/\/testflight\.apple\.com\/v3\/accounts\/(.*)\/apps$/
@@ -9,7 +10,7 @@ const reg2 = /^https:\/\/testflight\.apple\.com\/join\/(.*)/
 if (reg1.test($request.url)) {
     $persistentStore.write(null, 'request_id')
     let url = $request.url
-    let key = url.replace(/(.*accounts\/)(.*)(\/apps)/, '$2')
+    let account_id = url.replace(/(.*accounts\/)(.*)(\/apps)/, '$2')
     let session_id =
         $request.headers['X-Session-Id'] || $request.headers['x-session-id']
     let session_digest =
@@ -18,7 +19,7 @@ if (reg1.test($request.url)) {
     let request_id =
         $request.headers['X-Request-Id'] || $request.headers['x-request-id']
     let ua = $request.headers['User-Agent'] || $request.headers['user-agent']
-    $persistentStore.write(key, 'key')
+    $persistentStore.write(account_id, 'account_id')
     $persistentStore.write(session_id, 'session_id')
     $persistentStore.write(session_digest, 'session_digest')
     $persistentStore.write(request_id, 'request_id')
