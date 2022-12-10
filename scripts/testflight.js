@@ -41,7 +41,6 @@ let isNotify = $.getdata('testflight_isnotify')
         result.push(p)
     }
     await doNotify(result)
-    $done()
 
     function doRequest(app) {
         const url = 'https://testflight.apple.com/join/'
@@ -112,8 +111,6 @@ let isNotify = $.getdata('testflight_isnotify')
                     }
                 }
             }
-            resolve()
-            $.done()
         })
     }
     // $done() 或 $.done() 都可以
