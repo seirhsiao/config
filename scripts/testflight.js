@@ -46,7 +46,7 @@ let isNotify = $.getdata('testflight_isnotify')
     function doRequest(app) {
         const url = 'https://testflight.apple.com/join/'
         const fullstr =
-            /版本的测试员已满|版本目前不接受任何新测试员|This beta is full|This beta isn't accepting any new testers right now/
+            /版本的测试员已满|此Beta版本目前不接受任何新测试员|Not Found|This beta is full|This beta isn't accepting any new testers right now/
         const appNameReg = /Join the (.+) beta - TestFlight - Apple/
         const appNameRegCh = /加入 Beta 版“(.+)” - TestFlight - Apple/
         let req = {
@@ -68,6 +68,7 @@ let isNotify = $.getdata('testflight_isnotify')
                     appName = dataStr.match(appNameRegCh)
                 } else {
                     resolve(result)
+                    return
                 }
                 let name = appName[1]
                 if (!fullstr.test(dataStr)) {
@@ -89,11 +90,11 @@ let isNotify = $.getdata('testflight_isnotify')
     function doNotify(res) {
         return Promise.all(res).then((results) => {
             $.log(JSON.stringify(results))
-            if (JSON.stringify(results) == '{}') {
-                resolve()
-            }
             for (let i in results) {
                 let result = results[i]
+                if (JSON.stringify(result) == '{}') {
+                    continue
+                }
                 for (name in result) {
                     let has = result[name].has
                     if (has) {
@@ -111,6 +112,7 @@ let isNotify = $.getdata('testflight_isnotify')
                     }
                 }
             }
+            resolve()
             $.done()
         })
     }
