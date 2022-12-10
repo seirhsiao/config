@@ -93,7 +93,7 @@ let isNotify = $.getdata('testflight_isnotify')
                 resolve()
             }
             for (let i in results) {
-                let result = result[i]
+                let result = results[i]
                 for (name in result) {
                     let has = result[name].has
                     if (has) {
