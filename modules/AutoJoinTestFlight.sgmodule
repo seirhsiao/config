@@ -18,7 +18,7 @@
 #⚠️：支持无限个TF链接，每个链接需要用英文逗号“,”隔开（如： argument=LPQmtkUs,Hgun65jg,8yhJgv）
 #
 # 4. APP_ID获取或追加（可选） - 第二个脚本支持通过访问`https://testflight.apple.com/join/xxx`方式添加/追加xxx到需要加入的APP_ID列表中
-# 5. 更新 boxjs 添加或修改APP_ID （可选） - https://github.com/seirhsiao/config/blob/main/scripts/hsiao.boxjs.json
+# 5. 更新 boxjs 添加或修改APP_ID （可选） - https://raw.githubusercontent.com/seirhsiao/config/main/scripts/hsiao.boxjs.json
 [Script]
 TF信息获取 = type=http-request, pattern=^https:\/\/testflight\.apple\.com\/v3\/accounts/.*\/apps$, requires-body=0, timeout=180, script-update-interval=86400, script-path=https://raw.githubusercontent.com/seirhsiao/config/main/scripts/TF_keys.js, enable=true
 

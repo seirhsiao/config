@@ -6,12 +6,12 @@
     "repo": "https://github.com/seirhsiao/config",
     "apps": [
         {
-            "id": "Auto_join_TF",
-            "name": "TestFlight自动加入",
+            "id": "testflight_auto_join",
+            "name": "TF自动加入",
             "author": "@hsiao",
             "script": "https://raw.githubusercontent.com/seirhsiao/config/main/scripts/Auto_join_TF.js",
             "descs_html": [
-                ""
+                "TestFlight自动加入"
             ],
             "icons": [
                 "https://raw.githubusercontent.com/Orz-3/mini/master/testflight.png",
@@ -27,16 +27,19 @@
             "settings": [
                 {
                     "id": "APP_ID",
-                    "name": "填写 APP_ID 多个用英文“,”隔开",
+                    "name": "APP_ID",
                     "val": "",
                     "type": "text",
-                    "desc": ""
+                    "rows": 1,
+                    "autoGrow": true,
+                    "placeholder": "VCIvwk2g,1SyedSId",
+                    "desc": "填写APP_ID多个用英文“,”隔开"
                 }
             ]
         },
         {
-            "id": "testflight",
-            "name": "tf监控",
+            "id": "testflight_monitor",
+            "name": "TF监控",
             "keys": [],
             "settings": [
                 {
@@ -62,9 +65,67 @@
             ],
             "author": "@hsiao",
             "script": "https://raw.githubusercontent.com/seirhsiao/config/main/scripts/testflight.js",
+            "descs_html": [
+                "TestFlight监控"
+            ],
             "icons": [
                 "https://raw.githubusercontent.com/Orz-3/mini/master/testflight.png",
                 "https://raw.githubusercontent.com/Orz-3/task/master/testflight.png"
+            ]
+        },
+        {
+            "id": "xiaomi_sport",
+            "name": "小米运动",
+            "author": "@hsiao",
+            "script": "https://raw.githubusercontent.com/seirhsiao/config/main/scripts/xmbs.js",
+            "descs_html": [
+                "小米运动修改微信支付宝运动步数"
+            ],
+            "icons": [
+                "http://ox.xmkczs.com/quantumultX/xmbs.png",
+                "http://ox.xmkczs.com/quantumultX/xmbs.png"
+            ],
+            "keys": [
+                "XIAOMI_AMAZFIT_USERNAME",
+                "XIAOMI_AMAZFIT_PASSWORD",
+                "XIAOMI_AMAZFIT_LOGIN_TOKEN",
+                "STED_SIZE_RANGE"
+            ],
+            "settings": [
+                {
+                    "id": "XIAOMI_AMAZFIT_USERNAME",
+                    "name": "账号：",
+                    "val": "",
+                    "type": "text",
+                    "placeholder": "小米运动账号",
+                    "desc": "多个用英文“#”隔开"
+                },
+                {
+                    "id": "XIAOMI_AMAZFIT_PASSWORD",
+                    "name": "密码：",
+                    "val": "",
+                    "type": "text",
+                    "placeholder": "小米运动密码",
+                    "desc": "多个用英文“#”隔开"
+                },
+                {
+                    "id": "STED_SIZE_RANGE",
+                    "name": "步数：",
+                    "val": "",
+                    "type": "text",
+                    "placeholder": "固定步数或随机步数",
+                    "desc": "随机步数用英文“-”隔开"
+                },
+                {
+                    "id": "XIAOMI_AMAZFIT_LOGIN_TOKEN",
+                    "name": "登录Token:",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "rows": 8,
+                    "placeholder": "自动账号密码登录获取或手动打开小米运动获取",
+                    "desc": "非必填，填写账号密码后，自动获取"
+                }
             ]
         }
     ]
