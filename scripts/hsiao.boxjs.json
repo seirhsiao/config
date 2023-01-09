@@ -77,7 +77,7 @@
             "id": "xiaomi_sport",
             "name": "小米运动",
             "author": "@hsiao",
-            "script": "https://raw.githubusercontent.com/seirhsiao/config/main/scripts/xmbs.js",
+            "script": "https://raw.githubusercontent.com/seirhsiao/config/main/scripts/xmyd.js",
             "descs_html": [
                 "小米运动修改微信支付宝运动步数"
             ],
@@ -89,7 +89,8 @@
                 "XIAOMI_AMAZFIT_USERNAME",
                 "XIAOMI_AMAZFIT_PASSWORD",
                 "XIAOMI_AMAZFIT_LOGIN_TOKEN",
-                "STED_SIZE_RANGE"
+                "STED_SIZE_RANGE",
+                "IS_CLOUD_API"
             ],
             "settings": [
                 {
@@ -115,6 +116,13 @@
                     "type": "text",
                     "placeholder": "固定步数或随机步数",
                     "desc": "随机步数用英文“-”隔开"
+                },
+                {
+                    "id": "IS_CLOUD_API",
+                    "name": "使用云函数API",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "优先不使用云函数API"
                 },
                 {
                     "id": "XIAOMI_AMAZFIT_LOGIN_TOKEN",
